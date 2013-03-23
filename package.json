@@ -1,0 +1,9 @@
+{
+  "name": "vader",
+  "version": "0.0.0",
+  "dependencies": {
+    "baconjs": "~0.2.3",
+    "duvet": "0.0.4",
+    "socket.io": "~0.9.13"
+  }
+}
