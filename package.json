@@ -5,5 +5,8 @@
     "baconjs": "~0.2.3",
     "duvet": "0.0.4",
     "socket.io": "~0.9.13"
+  },
+  "devDependencies": {
+    "LiveScript": "~1.1.1"
   }
 }
