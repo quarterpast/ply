@@ -5,7 +5,7 @@
     "baconjs": "~0.2.3",
     "livewire": "0.2.x",
     "socket.io": "~0.9.13",
-    "socket.io-browserify": "~0.9.6",
+    "socket.io-client": "~0.9.6",
     "browserify": "~2.7.2",
     "liveify": "~0.3.0"
   },
