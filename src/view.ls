@@ -29,15 +29,18 @@ class exports.View
 					[type,...parts] = words event-ptr
 					sel = unwords parts
 
-					handler $ document .as-event-stream type,sel
+					handler if process.browser
+						$ document .as-event-stream type,sel
+					else Bacon.constant 0
 
 		return out
 
 	collect: ->
 		values this
-		|> concat-map (.values ? it!)
+		|> reject (in View::)
+		|> concat-map ->
+			if it.values? then that else []
 		|> Bacon.combine-all _, (import)
 
-	render: (data)->
-		@@template.render @collect!.map (data import)
-
+	render: (data = {})->
+		@constructor.template.render @collect!.map (data import)

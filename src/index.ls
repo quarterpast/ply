@@ -1,6 +1,1 @@
-module.exports = class Vader
-	@routes = require \livewire
-	@View = require "./view"
-
-	(config)~>
-		
+(exports import) `each` map require, <[./view ./server ./template]>
