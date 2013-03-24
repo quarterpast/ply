@@ -23,8 +23,9 @@ livewire.GET "/" (res)->
 	new View.subclasses.Main!
 	.render {}
 	.take 1
+	.map ( "<script src='/bundle.js'></script>" +)
 
-bundle = browserify [require.main.filename]
+bundle = browserify [require.main.filename] .transform liveify
 
 require.main.filename
 |> path.dirname
@@ -36,8 +37,7 @@ require.main.filename
 livewire.GET "/bundle.js" (res)->
 	res{}headers.content-type = "application/javascript"
 	bundle
-	.transform liveify
-	.bundle!
+	.bundle {+debug}
 
 
 class exports.Server
