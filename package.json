@@ -6,7 +6,8 @@
     "duvet": "0.0.4",
     "socket.io": "~0.9.13",
     "socket.io-browserify": "~0.9.6",
-    "browserify": "~2.7.2"
+    "browserify": "~2.7.2",
+    "liveify": "~0.3.0"
   },
   "devDependencies": {
     "LiveScript": "~1.1.1"
