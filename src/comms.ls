@@ -14,6 +14,6 @@ Comms import
 		Comms.socket.on \error bus~error
 
 		bus
-	
+
 
 Comms import if process.browser then up:Comms.out, down:Comms.in else up:Comms.in, down:Comms.out
