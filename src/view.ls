@@ -1,6 +1,8 @@
 require! {
 	"./oop".subclass-tracker
 	"./oop".js-subclass
+	"./utils".lift
+	"./utils".into
 	baconjs.Bacon
 }
 
@@ -35,12 +37,18 @@ class exports.View
 
 		return out
 
-	collect: ->
-		values this
-		|> reject (in View::)
-		|> concat-map ->
-			if it.values? then that else []
-		|> Bacon.combine-all _, (import)
+	tval = (k,v,data)->
+		| v.values? => that
+		| v instanceof Function => tval k,( v data),data
+		| v instanceof Bacon.Observable => v.map into k
+		| otherwise => lift (k):v
+
+	collect: (data)->
+		[tval k,v,data for k,v of this when k not of View.prototype]
+		|> fold (++),[]
+		|> Bacon.combine-with _, (a,v)->
+			a import v
 
 	render: (data = {})->
-		@constructor.template.render @collect!.map (data import)
+		@constructor.template.render @collect data
+		#.map (data import)

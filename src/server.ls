@@ -5,6 +5,7 @@ require! {
 	"./comms"
 	"./view".View
 	baconjs.Bacon
+	\browserify
 }
 
 Bacon.Observable::pipe = (out)->
@@ -18,8 +19,11 @@ Bacon.Observable::pipe = (out)->
 livewire.GET "/" (res)->
 	new View.subclasses.Main!
 	.render {}
+	.take 1
 
-	
+# livewire.GET "/bundle.js" (res)->
+
+
 class exports.Server
 	listen: (port,address)->
 		@app.listen port,address
