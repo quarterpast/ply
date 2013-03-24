@@ -6,6 +6,9 @@ require! {
 	"./view".View
 	baconjs.Bacon
 	\browserify
+	\liveify
+	\require-folder
+	path
 }
 
 Bacon.Observable::pipe = (out)->
@@ -21,7 +24,20 @@ livewire.GET "/" (res)->
 	.render {}
 	.take 1
 
-# livewire.GET "/bundle.js" (res)->
+bundle = browserify [require.main.filename]
+
+require.main.filename
+|> path.dirname
+|> require-folder _, callback: (filename)->
+	return if filename is require.main.filename
+	bundle.require filename
+	require filename
+
+livewire.GET "/bundle.js" (res)->
+	res{}headers.content-type = "application/javascript"
+	bundle
+	.transform liveify
+	.bundle!
 
 
 class exports.Server

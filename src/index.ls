@@ -1,1 +1,1 @@
-(exports import) `each` map require, <[./view ./server ./template]>
+(exports import) `each` map require, <[./view ./server ./template ./comms]>

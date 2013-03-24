@@ -1,12 +1,11 @@
 require! {
-	"./lib".View
-	"./lib".Template
-	"./lib".Server
-	"./lib".Comms
-	"./lib/utils".into
+	Vader: "../"
+	"../lib/utils".into
 	handlebars
 	baconjs.Bacon
 }
+
+{Template,Server,Comms,View} = Vader
 
 Template.engine = handlebars.compile
 
@@ -22,5 +21,6 @@ class Main extends View
 
 	@template = new Template """<h1>{{greeting}}</h1><h2>clicked {{clicks}} times</h2><h3>{{tick}}</h3>"""
 
-new Server!
-.listen 8000
+unless process.browser
+	new Server!
+	.listen 8000

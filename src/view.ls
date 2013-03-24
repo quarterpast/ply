@@ -46,9 +46,8 @@ class exports.View
 	collect: (data)->
 		[tval k,v,data for k,v of this when k not of View.prototype]
 		|> fold (++),[]
-		|> Bacon.combine-with _, (a,v)->
-			a import v
+		|> Bacon.combine-with _, (import)
 
 	render: (data = {})->
-		@constructor.template.render @collect data
-		#.map (data import)
+		@collect data .map (data import)
+		|> @constructor.template.render
