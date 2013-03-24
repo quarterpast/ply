@@ -2,7 +2,10 @@ require! {
 	vader.View
 	vader.Template
 	vader.Server
+	handlebars
 }
+
+vader.Template.engine = handlebars
 
 class Main extends vader.View
 	"click h1": @event compose do
