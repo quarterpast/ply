@@ -1,5 +1,5 @@
 module.exports = class Vader
-	import require \duvet
+	@routes = require \livewire
 	@View = require "./view"
 
 	(config)~>

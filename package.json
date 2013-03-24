@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "baconjs": "~0.2.3",
-    "duvet": "0.0.4",
+    "livewire": "0.2.x",
     "socket.io": "~0.9.13",
     "socket.io-browserify": "~0.9.6",
     "browserify": "~2.7.2",
