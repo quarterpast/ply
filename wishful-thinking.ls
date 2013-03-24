@@ -5,15 +5,15 @@ require! {
 	handlebars
 }
 
-vader.Template.engine = handlebars
+Template.engine = handlebars
 
-class Main extends vader.View
+class Main extends View
 	"click h1": @event compose do
 		(.map 1)
 		(.scan 0 (+))
 		(.map into \clicks)
 
-	@template = new vader.Template """<h1>Click me!</h1><h2>clicked {{clicks}} times</h2>"""
+	@template = new Template """<h1>Click me!</h1><h2>clicked {{clicks}} times</h2>"""
 
-new vader.Server
+new Server
 .listen 8000
