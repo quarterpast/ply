@@ -8,13 +8,19 @@ class exports.View
 	import subclass-tracker!
 	import js-subclass!
 
+	@template = render: ->Bacon.never!
+
+	class event
+		values: []
+		(@handler)->
+
 	@event = (handler)->
 		{prototype} = this
-		out = new class event
+		out = new event handler
 
 		process.next-tick do
 			:delorean ~>
-				prototype
+				out.values = prototype
 				|> filter (is out)
 				|> keys
 				|> head
@@ -23,6 +29,15 @@ class exports.View
 					[type,...parts] = words event-ptr
 					sel = unwords parts
 
-					@bus.plug handler $ document .as-event-stream type,sel
+					handler $ document .as-event-stream type,sel
 
 		return out
+
+	collect: ->
+		values this
+		|> concat-map (.values ? it!)
+		|> Bacon.combine-all _, (import)
+
+	render: (data)->
+		@@template.render @collect!.map (data import)
+
