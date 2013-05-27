@@ -19,6 +19,10 @@ Bacon.Observable::pipe = (out)->
 		| (.is-end!)    => out.end!
 	return out
 
+class BaconResponse extends livewire.Response
+	@supports = (instanceof Bacon.Observable)
+	~> super ...
+
 livewire.GET "/" (res)->
 	new View.subclasses.Main!
 	.render {}
