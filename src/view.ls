@@ -22,6 +22,7 @@ class exports.View
 
 		process.next-tick do
 			:delorean ~>
+				#TODO: what am i trying to do here
 				out.values = prototype
 				|> filter (is out)
 				|> keys
