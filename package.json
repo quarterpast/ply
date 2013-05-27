@@ -8,7 +8,7 @@
     "socket.io-client": "~0.9.6",
     "browserify": "~2.7.2",
     "liveify": "~0.3.0",
-    "require-folder": "0.0.5",
+    "require-folder": "0.0.x",
     "prelude-ls": "~0.6.0",
     "jquery-browserify": "~1.8.1"
   },
