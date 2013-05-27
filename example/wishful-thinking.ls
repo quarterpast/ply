@@ -1,11 +1,11 @@
 require! {
-	Vader: "../"
+	Ply: "../"
 	"../lib/utils".into
 	handlebars
 	baconjs.Bacon
 }
 
-{Template,Server,Comms,View} = Vader
+{Template,Server,Comms,View} = Ply
 
 Template.engine = handlebars.compile
 
