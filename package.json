@@ -1,6 +1,6 @@
 {
-  "name": "vader",
-  "version": "0.0.0",
+  "name": "ply",
+  "version": "0.0.1",
   "dependencies": {
     "baconjs": "~0.2.3",
     "livewire": "0.2.x",
