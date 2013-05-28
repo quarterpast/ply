@@ -6,7 +6,7 @@
     "livewire": "0.3.x",
     "socket.io": "~0.9.13",
     "socket.io-client": "~0.9.6",
-    "browserify": "~2.7.2",
+    "browserify": "2.x",
     "liveify": "~0.3.0",
     "require-folder": "0.0.x",
     "prelude-ls": "~0.6.0",

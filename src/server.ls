@@ -21,13 +21,14 @@ Bacon.Observable::pipe = (out)->
 
 class BaconResponse extends livewire.Response
 	@supports = (instanceof Bacon.Observable)
+	status-code: 200
 	~> super ...
 
 livewire.GET "/" (res)->
 	new View.subclasses.Main!
 	.render {}
 	.take 1
-	.map ( "<script src='/bundle.js'></script>" +)
+	.map ("<script src='/bundle.js'></script>" +)
 
 bundle = browserify [require.main.filename] .transform liveify
 
@@ -38,11 +39,9 @@ require.main.filename
 	bundle.require filename
 	require filename
 
-livewire.GET "/bundle.js" (res)->
-	res{}headers.content-type = "application/javascript"
-	bundle
-	.bundle {+debug}
-
+livewire.GET "/bundle.js" ->
+	headers:content-type: "application/javascript"
+	body: bundle.bundle {+debug,+ignoreMissing} .on \error console.log
 
 class exports.Server
 	listen: (port,address)->

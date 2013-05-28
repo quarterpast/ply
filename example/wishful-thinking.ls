@@ -1,13 +1,16 @@
 require! {
 	Ply: "../"
 	"../lib/utils".into
-	handlebars
+#	handlebars
 	baconjs.Bacon
+	LiveScript
 }
 
 {Template,Server,Comms,View} = Ply
 
-Template.engine = handlebars.compile
+Template.engine = (raw)->
+	fn = LiveScript.run 'return ->"""'+raw+'"""' {+bare}
+	return fn~call
 
 class Main extends View
 	"click h1": @event compose do
@@ -19,7 +22,7 @@ class Main extends View
 
 	tick: Bacon.from-poll 200 ->new Bacon.Next Math.random!
 
-	@template = new Template """<h1>{{greeting}}</h1><h2>clicked {{clicks}} times</h2><h3>{{tick}}</h3>"""
+	@template = new Template '<h1>#{@greeting}</h1><h2>clicked #{@clicks} times</h2><h3>#{@tick}</h3>'
 
 unless process.browser
 	new Server!
